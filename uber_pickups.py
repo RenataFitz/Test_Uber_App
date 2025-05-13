@@ -5,9 +5,9 @@ import numpy as np
 st.title("uber_pickups in NYC: the App")
 
 
-="date/time"
+DATE_COLUMN="date/time"
 
-DATA_URL = ('https://s3-us-west-2.amazonaws.com/' 'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
+DATA_URL = ('https://s3-us-west-2.amazonaws.com/streamlit-demo-data/uber-raw-data-sep14.csv.gz')
 
 
 def load_data(nrows):
@@ -16,3 +16,7 @@ def load_data(nrows):
 	data.rename(lowercase, axis="columns", iplace=True)
 	data[DATE_COLUMN]= pd.to_datetime(data[DATE_COLUMN])
 	return data
+
+data_load_state=st.text("Laoding Data...")
+data=load_data(10000)
+data_load_state=st.text("Laoding Data...done!")
